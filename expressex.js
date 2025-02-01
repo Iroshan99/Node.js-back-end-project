@@ -13,6 +13,14 @@ app.get('/users',function(req,res){
 
 })
 
+app.get('/:id',function(req,res){
+    fs.readFile('users.json','utf-8',function (err,data){
+        var users=JSON.parse(data);
+        var user=users["user"+req.params.id];
+        res.end(JSON.stringify(user));
+    })
+})
+
 app.listen(3000,function () {
     console.log("sever is running");
     
